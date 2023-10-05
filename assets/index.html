@@ -16,8 +16,33 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="./Css/style.css">
+
+    <!-- Script -->
+    <script src="./Js/script.js" defer></script>
 </head>
 <body>
-    
+    <header>
+        <section id="infosHeader">
+            <small>My balance</small>
+            <h3>$921.48</h3>
+        </section>
+        <img src="../src/images/logo.svg" alt="">
+    </header>
+    <main>
+        <h2>Spending - Last 7 days</h2>
+        <section id="grafico" style="border-bottom: 1px solid hsl(28, 10%, 53%) ;">
+            <canvas id="graficoSemanal"></canvas>
+        </section>
+        <section id="ganhos">
+            <div id="thisMonth">
+                <small>Total this month</small>
+                <h1>$478.33</h1>
+            </div>
+            <div id="lastMonth">
+                <small><strong>+2.4%</strong></small>
+                <small>from last month</small>
+            </div>
+        </section>
+    </main>
 </body>
 </html>
