@@ -1,32 +1,50 @@
+//Variáveis
+const graficoSemanal = document.getElementById("semanal");
+//Endereço do data json
+const endpoint = "../src/data.json";
 
-const graficoSemanal = document.getElementById('semanal')
-
-const week = []
-
-new Chart(graficoSemanal, {
-    type: 'bar',
+//Importação com fetchApi
+fetch(endpoint)
+.then((response) => response.json())
+.then((data) => {
+  const infos = new Chart(graficoSemanal, {
+    type: "bar",
     data: {
-        labels: week,
-        datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            borderWidth: 1
-        }]
+      labels: data.map((infos) => infos.day),
+      datasets: [
+        {
+          data: data.map((infos) => infos.amount),
+          backgroundColor: ["hsl(10, 79%, 65%)"],
+          borderRadius: 8,
+          hoverBackgroundColor: "hsl(10, 79%, 75%)",
+        },
+      ],
     },
     options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
+      scales: {
+        y: {
+          tickes: {
+            display: false
+          },
+          grid: {
+            display: false,
+            drawTicks: false,
+            drawBorder: false 
+          }
+        },
+        x: {
+          grid: {
+            offset: false,
+            display: false,
+            drawBorder: false,
+          }
         }
+      },
+      plugins: {
+        legend: {
+          display: false
+        }
+      }
     }
-});
-
-const endpoint = "../src/data.json"
-fetch(endpoint).then((response) => {
-    response.json().then((dados) => {
-        dados.map((day) => {
-            console.log(day);
-        })
-    })
+  });
 })
